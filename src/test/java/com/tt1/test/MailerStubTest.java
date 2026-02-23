@@ -10,6 +10,7 @@ class MailerStubTest {
 
     @BeforeEach
     void setUp() {
+
     }
 
     @AfterEach
