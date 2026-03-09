@@ -1,29 +1,35 @@
 package com.tt1.test;
 
-import java.time.LocalDate;
-
 public class Servicio {
-    /*
-    iEmail emails;
+    private Repositorio repositorio;
+    private MailerStub mailer;
 
-    public Servicio(Iemail emial){
-    this.Servicio
-    }
-     */
-
-    public void crearToDo(String nombre, String fechalimite){
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+    public Servicio() {
+        this.repositorio = new Repositorio();
+        this.mailer = new MailerStub();
     }
 
-    public void addCorreo(String s){
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+    public void crearToDo(String nombre, String fechalimite) {
+        ToDo nuevaTarea = new ToDo(nombre, fechalimite);
+        repositorio.addTodo(nuevaTarea);
     }
 
-    public void marcarCompletado(ToDo toDo){
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+    public void addCorreo(String s) {
+        if (s != null && !s.isEmpty()) {
+            repositorio.addEmail(s);
+        }
     }
 
-    public ToDo consultar(ToDo toDo){
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+    public void marcarCompletado(ToDo toDo) {
+        if (toDo != null) {
+            repositorio.marcarCompletado(toDo);
+        }
+    }
+
+    public ToDo consultar(ToDo toDo) {
+        if (toDo == null) {
+            return null;
+        }
+        return repositorio.encontrar(toDo);
     }
 }

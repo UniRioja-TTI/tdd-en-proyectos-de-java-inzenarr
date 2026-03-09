@@ -1,21 +1,44 @@
 package com.tt1.test;
 
+import java.util.List;
+
 public class Repositorio {
-    private DBStub DBStub;
+    private DBStub dbStub;
 
-    public ToDo encontrar(ToDo toDo){
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+    public Repositorio() {
+        this.dbStub = new DBStub();
     }
 
-    public void marcarCompletado(ToDo toDo){
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+    public ToDo encontrar(ToDo toDo) {
+        if (toDo == null) return null;
+
+        List<ToDo> todas = dbStub.read();
+        for (ToDo t : todas) {
+            if (t.getNombre() != null && t.getNombre().equals(toDo.getNombre())) {
+                return t;
+            }
+        }
+        return null;
     }
 
-    public void addTodo(ToDo toDo){
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+    public void marcarCompletado(ToDo toDo) {
+        ToDo encontrada = encontrar(toDo);
+        if (encontrada != null) {
+            encontrada.setCompletado(true);
+        } else {
+            toDo.setCompletado(true);
+        }
     }
 
-    public void addEmail(String email){
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+    public void addTodo(ToDo toDo) {
+        if (toDo != null) {
+            dbStub.create(toDo);
+        }
+    }
+
+    public void addEmail(String email) {
+        if (email != null) {
+            dbStub.agregarEmail(email);
+        }
     }
 }

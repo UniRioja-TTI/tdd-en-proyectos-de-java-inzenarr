@@ -2,6 +2,7 @@ package com.tt1.test;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class ToDo implements Serializable {
     private String nombre;
@@ -9,11 +10,14 @@ public class ToDo implements Serializable {
     private String fechalimite;
     private boolean completado;
 
+    // para los tests, para convertir String a LocalDate y al reves
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE;
+
     public ToDo(){
         super();
     }
 
-    public ToDo(String nombre,String fechalimite) {
+    public ToDo(String nombre, String fechalimite) {
         super();
         this.nombre = nombre;
         this.descripcion = "";
@@ -22,37 +26,48 @@ public class ToDo implements Serializable {
     }
 
     public String getNombre() {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        this.nombre = nombre;
     }
 
     public String getDescripcion() {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        return descripcion;
     }
 
     public void setDescripcion(String descripcion) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        this.descripcion = descripcion;
     }
 
     public LocalDate getFechalimite() {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        return (fechalimite != null) ? LocalDate.parse(fechalimite, FORMATTER) : null;
     }
 
     public void setFechalimite(LocalDate fechalimite) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        this.fechalimite = (fechalimite != null) ? fechalimite.format(FORMATTER) : null;
     }
 
-    // Nota: El estándar para booleanos es "is"
     public boolean isCompletado() {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        return completado;
     }
 
     public void setCompletado(boolean completado) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        this.completado = completado;
     }
 
+    // Es recomendable añadir equals para que el Repositorio pueda encontrar objetos
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ToDo toDo = (ToDo) o;
+        return nombre.equals(toDo.nombre);
+    }
 
+    @Override
+    public int hashCode() {
+        return nombre.hashCode();
+    }
 }

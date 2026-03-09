@@ -12,22 +12,28 @@ public class DBStub {
     }
 
     public void create(ToDo tarea) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        if (tarea != null) {
+            this.tareas.add(tarea);
+        }
     }
 
     public List<ToDo> read() {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        return new ArrayList<>(this.tareas);
     }
 
     public void update(int index, ToDo nuevaTarea) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        if (index >= 0 && index < this.tareas.size() && nuevaTarea != null) {
+            this.tareas.set(index, nuevaTarea);
+        }
     }
 
     public void delete(ToDo tarea) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        this.tareas.remove(tarea);
     }
 
     public void agregarEmail(String email) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        if (email != null && !email.trim().isEmpty()) {
+            this.agendaEmails.add(email);
+        }
     }
 }
