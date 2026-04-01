@@ -1,7 +1,17 @@
 package com.tt1.test;
 
-public class App{
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
+
+@SpringBootApplication //para que se active el FrameWork
+public class App {
     public static void main(String[] args) {
-        System.out.println("En ejecicion");
+        SpringApplication.run(App.class, args);
+    }
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }

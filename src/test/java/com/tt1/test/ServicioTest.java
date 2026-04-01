@@ -12,8 +12,9 @@ class ServicioTest {
 
     @BeforeEach
     void setUp() {
-        // En una implementación real, aquí inyectarías el Repositorio al Servicio
-        servicio = new Servicio();
+        Repositorio repo = new Repositorio();
+        ServicioConsumibleClient cliente = new ServicioConsumibleClient(new org.springframework.web.client.RestTemplate());
+        servicio = new Servicio(repo, cliente);
     }
 
     @Test

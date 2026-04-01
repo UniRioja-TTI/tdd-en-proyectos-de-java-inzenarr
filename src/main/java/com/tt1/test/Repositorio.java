@@ -1,7 +1,10 @@
 package com.tt1.test;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
+@Repository
 public class Repositorio {
     private DBStub dbStub;
 

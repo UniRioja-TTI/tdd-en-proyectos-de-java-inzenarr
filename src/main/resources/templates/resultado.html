@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado del Token</title>
+</head>
+<body>
+<h1>Solicitud Enviada con Éxito</h1>
+<p>El número aleatorio calculado para tu token es:</p>
+<h2 th:text="${token}">0000</h2>
+<br>
+<a href="/solicitud">Volver al formulario</a>
+</body>
+</html>
